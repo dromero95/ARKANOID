@@ -2,3 +2,5 @@
 REPOSITORIO VIDEOJUEGO INFOR DEFINITIVO
 
 Cambio en Readme MASTER
+
+Nuevo cambio en rama Dani
