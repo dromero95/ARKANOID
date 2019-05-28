@@ -4,7 +4,7 @@
 #include "Esfera.h"
 
 //Dani Hace un cambio
-
+//Dani hace un cambio en su rama
 
 class BloqueDoble : public Bloque
 {
@@ -13,4 +13,3 @@ public:
 	BloqueDoble();
 	~BloqueDoble();
 };
-
