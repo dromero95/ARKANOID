@@ -14,6 +14,7 @@ public:
 	Planobloque techo;
 	Planobloque pared_izq;
 	Planobloque pared_dcha;
+	Planobloque frontal;
 };
 
 

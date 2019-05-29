@@ -10,7 +10,7 @@ public:
 	~Puntos(void);
 	void setPuntos() {Puntuacion=0;}
 	int getPuntos(){return Puntuacion;}
-	void imprimePuntos(){cout<<"Putuación: "<<getPuntos()<<"Puntos"<<endl;}
+	void imprimePuntos(){cout<<"Putuacion: "<<getPuntos()<<"Puntos"<<endl;}
 	void incrementaPuntos() {Puntuacion+=10;}
 };
 

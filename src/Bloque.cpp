@@ -1,8 +1,6 @@
 #include "Bloque.h"
 #include "Interaccion.h"
 
-//CAMBIO DANI
-
 Bloque::Bloque(void) //Creación por defecto
 {
 }
@@ -14,6 +12,7 @@ Bloque::~Bloque(void) //Destruye todas las paredes con su destructor
 	techo.~Planobloque();
 	pared_dcha.~Planobloque();
 	pared_izq.~Planobloque();
+	frontal.~Planobloque();
 
 }
 
@@ -23,6 +22,7 @@ void Bloque::dibuja() //Dibuja las 5 caras (salvo la trasera) de un cubo
 	techo.dibuja();
 	pared_izq.dibuja();
 	pared_dcha.dibuja();
+	frontal.dibujaFrontal();
 }
 
 bool Bloque::rebota(Esfera &e) //devuelve si choca o no.

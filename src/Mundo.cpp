@@ -44,13 +44,15 @@ void Mundo::mueve()
 		esfera.aceleracion.y=0; //esfera parada esperando ser lanzada
 	}
 
-
-	 Bloque *aux=bloques.rebota(esfera);//Si la esfera choca con un bloque, nos devuelve el bloque con el que choca
-	 if(aux!=0x000000)//si alguna esfera ha chocado ¿Es necesario?
+	Bloque *aux=bloques.rebota(esfera);//Si la esfera choca con un bloque, nos devuelve el bloque con el que choca
+	if(aux!=0x000000)//si alguna esfera ha chocado ¿Es necesario?
 		bloques.eliminar(aux);//eliminamos el bloque que hemos tocado //AQUÍ ES DONDE SE GESTIONA EL BORRADO DEL BLOQUE QUE CHOCA
 	
-	if (bloques.lista[0]==00000000) //AL BORRAR TODOS LOS BLOQUES, LA MEMORIA DEBERIA ESTAR A 0. ESTO CARGARIA LA PANTALLA 2 
+	if (bloques.lista[0]==00000000 && nivel==1) //AL BORRAR TODOS LOS BLOQUES, LA MEMORIA DEBERIA ESTAR A 0. ESTO CARGARIA LA PANTALLA 2 
 		Mundo::inicializaV2();
+	
+	if (bloques.lista[0]==00000000 && nivel==2)
+		Mundo::inicializaV3();
 }
 
 void Mundo::inicializa()
@@ -59,14 +61,16 @@ void Mundo::inicializa()
 	y_ojo=7.5;
 	z_ojo=30;
 	
+	nivel=1;
+	
 	esfera.setColor(0,0,255); //Establecemos la esfera de color rojo
-	esfera.setRadio(0.45f); //Con este radio
+	esfera.setRadio(0.6f); //Con este radio
 	esfera.setPos(0,2); //En esta posición inicial
 	esfera.setVel(0,0); // Parada, esperando a ser lanzada
 
 	ficha.setPos(2.0f,1,-2.0f,1); //Fijamos la posición de la ficha en el centro de la pantalla.
 
-	vds.setVidas(5); //Ponemos el número de vidas gastadads a 0 inicialmente. 
+	vds.setVidas(5); //Ponemos el número de vidas iniciales. 
 
 	//Cargamos la primera pantalla del juego
 	inicializaV1();
@@ -74,6 +78,7 @@ void Mundo::inicializa()
 
 void Mundo::inicializaV1()
 {
+	nivel=1;
 	//PRIMERA PANTALLA (NIVEL 1)
 	int horizontal=0;
 	int vertical=0;
@@ -83,6 +88,8 @@ void Mundo::inicializaV1()
 		for (int i=0 ; i<13 ; i++) 
 		{
 			Bloque* aux = new Bloque; // Creamos un bloque con NEW, y se lo asignamos a AUX. Utilizamos AUX para ahora darle posición y color a sus planos. 
+			aux->frontal.setColor(255,0,0);
+			aux->frontal.setPos(-13.0f+horizontal,14.0f-vertical,-11.0f+horizontal,15.0f-vertical);
 			aux->suelo.setColor(255,0,0);
 			aux->suelo.setPos(-13.0f+horizontal,14-vertical,-11.0f+horizontal,14-vertical);
 			aux->techo.setColor(255,0,0);
@@ -102,7 +109,46 @@ void Mundo::inicializaV1()
 }
 void Mundo::inicializaV2()
 {
+	nivel=2;
 	cout<<"Primer nivel superado. Siguiente nivel: Nivel 2."<<endl;
+	esfera.setPos(0,2); //esfera en posición inicial
+	esfera.setVel(0,0);  //esfera parada esperando a ser lanzada
+	esfera.aceleracion.y=0; //esfera parada esperando ser lanzada
+	ficha.setPos(2.0f,1,-2.0f,1);
+	ficha.setVel(0,0);
+
+
+	int horizontal=0;
+	int vertical=0;
+	int num=7, i=1;
+	for (int i=0; i<num; i++) 
+	{
+		int j=1;
+		for (int j=1 ; j<=i; j++) {horizontal=horizontal+2;}
+		for (int k=0; k<2*(num-i)-1; k++)
+		{
+			Bloque* aux = new Bloque; // Creamos un bloque con NEW, y se lo asignamos a AUX. Utilizamos AUX para ahora darle posición y color a sus planos. 
+			aux->frontal.setColor(255,0,0);
+			aux->frontal.setPos(-13.0f+horizontal,14.0f-vertical,-11.0f+horizontal,15.0f-vertical);
+			aux->suelo.setColor(255,0,0);
+			aux->suelo.setPos(-13.0f+horizontal,14-vertical,-11.0f+horizontal,14-vertical);
+			aux->techo.setColor(255,0,0);
+			aux->techo.setPos(-13.0f+horizontal,15.0f-vertical,-11.0f+horizontal,15.0f-vertical);
+			aux->pared_dcha.setColor(150,150,150);
+			aux->pared_dcha.setPos(-13.0f+horizontal,14-vertical,-13.0f+horizontal,15.0f-vertical);
+			aux->pared_izq.setColor(150,150,150);
+			aux->pared_izq.setPos(-11.0f+horizontal,14-vertical,-11.0f+horizontal,15.0f-vertical);
+			bloques.agregar(aux); //Agregamos el bloque a la lista 
+			horizontal=horizontal+2; //pasamos al siguiente bloque horizontal
+		}
+		horizontal=0; //volvemos al principio de la fila horizontal
+		vertical=vertical+1; //añadimos una fila 
+	}
+}
+void Mundo::inicializaV3()
+{
+	nivel=3;
+	cout<<"Segundo nivel superado. Siguiente nivel: Nivel 3."<<endl;
 	esfera.setPos(0,2); //esfera en posición inicial
 	esfera.setVel(0,0);  //esfera parada esperando a ser lanzada
 	esfera.aceleracion.y=0; //esfera parada esperando ser lanzada
@@ -119,6 +165,8 @@ void Mundo::inicializaV2()
 		for (int k=0; k<2*i-1; k++)
 		{
 			Bloque* aux = new Bloque; // Creamos un bloque con NEW, y se lo asignamos a AUX. Utilizamos AUX para ahora darle posición y color a sus planos. 
+			aux->frontal.setColor(255,0,0);
+			aux->frontal.setPos(-13.0f+horizontal,14.0f-vertical,-11.0f+horizontal,15.0f-vertical);
 			aux->suelo.setColor(255,0,0);
 			aux->suelo.setPos(-13.0f+horizontal,14-vertical,-11.0f+horizontal,14-vertical);
 			aux->techo.setColor(255,0,0);
@@ -140,6 +188,8 @@ void Mundo::inicializaV2()
 		for (int k=0; k<2*(num-i)-1; k++)
 		{
 			Bloque* aux = new Bloque; // Creamos un bloque con NEW, y se lo asignamos a AUX. Utilizamos AUX para ahora darle posición y color a sus planos. 
+			aux->frontal.setColor(255,0,0);
+			aux->frontal.setPos(-13.0f+horizontal,14.0f-vertical,-11.0f+horizontal,15.0f-vertical);
 			aux->suelo.setColor(255,0,0);
 			aux->suelo.setPos(-13.0f+horizontal,14-vertical,-11.0f+horizontal,14-vertical);
 			aux->techo.setColor(255,0,0);
@@ -155,6 +205,8 @@ void Mundo::inicializaV2()
 		vertical=vertical+1; //añadimos una fila 
 	}
 }
+
+
 
 void Mundo::tecla(unsigned char key)
 {

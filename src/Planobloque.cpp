@@ -22,6 +22,19 @@ void Planobloque::dibuja() //Dibuja los planos que pueden chocar con las bolas. 
 	glEnable(GL_LIGHTING);
 }
 
+void Planobloque::dibujaFrontal()
+{
+	glDisable(GL_LIGHTING);
+	color.ponColor(); //Es de ColorRGB
+	glBegin(GL_POLYGON);
+		glVertex3d(limite1.x,limite1.y,0.3);
+		glVertex3d(limite1.x,limite2.y,0.3);
+		glVertex3d(limite2.x,limite2.y,0.3);
+		glVertex3d(limite2.x,limite1.y,0.3);
+	glEnd();
+	glEnable(GL_LIGHTING);
+}
+
 void Planobloque::setColor( Byte r,Byte v, Byte a)
 {
 	color.set(r,v,a);

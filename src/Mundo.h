@@ -16,6 +16,7 @@ class Mundo
 	Vidas vds;
 	Puntos punto;
 
+	int nivel;
 	float x_ojo;
 	float y_ojo;
 	float z_ojo;
@@ -25,6 +26,7 @@ public:
 	void inicializa();
 	void inicializaV1();
 	void inicializaV2();
+	void inicializaV3();
 	void rotarOjo();
 	void mueve();
 	void dibuja();

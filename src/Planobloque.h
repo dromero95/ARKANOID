@@ -10,6 +10,7 @@ public:
 	Planobloque();
 	virtual ~Planobloque();
 	void dibuja();
+	void dibujaFrontal();
 	void setColor(Byte r,Byte v, Byte a);
 	void setPos(float x1, float y1, float x2, float y2);
 	float distancia(Vector2D punto, Vector2D *direccion);
