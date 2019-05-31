@@ -29,12 +29,14 @@ void Mundo::dibuja()
 void Mundo::mueve()
 {
 	ficha.mueve(0.09f); //MOVIMIENTO DE LA FICHA ROJA
+	ficha.setVel(0.0f,0.0f); //PARA QUE LA FICHA NO SE MUEVA SI NO SE PULSA UNA TECLA
 	esfera.mueve(0.025f); //MOVIMIENTO DE LA ESFERA
 	Interaccion::rebote(ficha,caja); //LIMITE DE LA CAJA PARA LA FICHA
 	Interaccion::rebote(esfera,caja); //CHOQUES ENTRE LA CAJA Y LA ESFERA
 	Interaccion::rebote(esfera, ficha); //REBOTE ENTRE LA ESFERA Y LA FICHA
 
 	// AQUÍ ESTÁ LA LÓGICA DEL JUEGO
+	
 
 	if (Interaccion::rebote(esfera, caja.suelo)&&(vds.getVidas()>0)) //Si se nos cae la bola, y tenemos vidas aún...
 	{
@@ -229,12 +231,13 @@ void Mundo::teclaEspecial(unsigned char key)
 	{
 		switch(key)
 		{
+
 		case GLUT_KEY_LEFT:
-			ficha.setVel (-5.0f, 0.0f); //Si quedan vidas, la ficha se mueve a esa velocidad.
+			ficha.setVel (-15.0f, 0.0f); //Si quedan vidas, la ficha se mueve a esa velocidad.
 			break;
 
 		case GLUT_KEY_RIGHT:
-			ficha.setVel (5.0f, 0.0f); //por defecto tiene este movimiento
+			ficha.setVel (15.0f, 0.0f); //por defecto tiene este movimiento
 			break;
 
 		case GLUT_KEY_UP:

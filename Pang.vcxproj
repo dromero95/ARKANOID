@@ -82,8 +82,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="BloqueDoble.cpp" />
     <ClCompile Include="src\Bloque.cpp" />
+    <ClCompile Include="src\BloqueDoble.cpp" />
     <ClCompile Include="src\Caja.cpp" />
     <ClCompile Include="src\ColorRGB.cpp" />
     <ClCompile Include="src\Esfera.cpp" />
@@ -99,8 +99,8 @@
     <ClCompile Include="src\vidas.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="BloqueDoble.h" />
     <ClInclude Include="src\Bloque.h" />
+    <ClInclude Include="src\BloqueDoble.h" />
     <ClInclude Include="src\Caja.h" />
     <ClInclude Include="src\ColorRGB.h" />
     <ClInclude Include="src\Esfera.h" />

@@ -15,6 +15,7 @@ class Mundo
 	ListaBloques bloques;
 	Vidas vds;
 	Puntos punto;
+	
 
 	int nivel;
 	float x_ojo;

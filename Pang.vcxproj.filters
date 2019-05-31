@@ -57,7 +57,7 @@
     <ClCompile Include="src\Puntos.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
-    <ClCompile Include="BloqueDoble.cpp">
+    <ClCompile Include="src\BloqueDoble.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
   </ItemGroup>
@@ -101,7 +101,7 @@
     <ClInclude Include="src\Puntos.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="BloqueDoble.h">
+    <ClInclude Include="src\BloqueDoble.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>
