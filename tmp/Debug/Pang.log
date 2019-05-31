@@ -15,5 +15,5 @@
   Vector2D.cpp
   vidas.cpp
   Generando código...
-  C:\Users\Leadclic03\Desktop\ETSIDI\VERSIONES ARKANOID\JUEGO ARKANOID V4FM\JUEGO ARKANOID V4FM\src\ListaBloques.cpp(43) : warning C4715: 'ListaBloques::rebota': no todas las rutas de acceso de control devuelven un valor
-  Pang.vcxproj -> C:\Users\Leadclic03\Desktop\ETSIDI\VERSIONES ARKANOID\JUEGO ARKANOID V4FM\JUEGO ARKANOID V4FM\bin\Pang.exe
+  C:\Users\Leadclic03\Desktop\ETSIDI\LAST\ARKANOID\src\ListaBloques.cpp(43) : warning C4715: 'ListaBloques::rebota': no todas las rutas de acceso de control devuelven un valor
+  Pang.vcxproj -> C:\Users\Leadclic03\Desktop\ETSIDI\LAST\ARKANOID\bin\Pang.exe

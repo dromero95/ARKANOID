@@ -82,6 +82,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Bonus.cpp" />
     <ClCompile Include="src\Bloque.cpp" />
     <ClCompile Include="src\BloqueDoble.cpp" />
     <ClCompile Include="src\Caja.cpp" />
@@ -100,6 +101,7 @@
     <ClCompile Include="src\vidas.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Bonus.h" />
     <ClInclude Include="src\Bloque.h" />
     <ClInclude Include="src\BloqueDoble.h" />
     <ClInclude Include="src\Caja.h" />
