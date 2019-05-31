@@ -57,14 +57,6 @@ bool Interaccion::rebote(Esfera &e, Ficha h) //Funciona, no tocar
 	return false;	
 }
 
-bool Interaccion::rebote(Esfera &e, ListaBloques *lb) //bool, es true si rebota con un bloque de a lista
-{
-	if (Interaccion::rebote (e, lb))
-		return true;
-	else 
-		return false;
-}
-
 bool Interaccion::rebote(Esfera &e, Bloque b) //bool, es true si rebota alguna superficie del bloque con la pelota
 {
 	if (rebote(e,b.suelo)||rebote(e,b.techo)||rebote(e,b.pared_dcha)||rebote(e,b.pared_izq)) 

@@ -25,18 +25,6 @@ void Ficha::dibuja() //Codigo para dibujar la ficha
 	glPopMatrix();
 }
 
-void Ficha::mueve(float t) //Movimiento de la ficha
-{
-	posicion=posicion+velocidad*t+aceleracion*(0.5f*t*t);
-	velocidad=velocidad+aceleracion*t;
-}
-
-void Ficha::setVel(float vx, float vy) //Velocidad 
-{
-	velocidad.x=vx;
-	velocidad.y=vy;
-}
-
 void Ficha::setPos(float x1, float y1, float x2, float y2) //Posición de los 4 puntos del plano
 {
 	limite1.x=x1;

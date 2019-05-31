@@ -60,6 +60,9 @@
     <ClCompile Include="src\BloqueDoble.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
+    <ClCompile Include="src\ObjetoMovil.cpp">
+      <Filter>Archivos de código fuente</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Mundo.h">
@@ -102,6 +105,9 @@
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="src\BloqueDoble.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ObjetoMovil.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>

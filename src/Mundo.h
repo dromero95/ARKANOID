@@ -5,7 +5,7 @@
 #include "ListaBloques.h"
 #include "Vidas.h"
 #include "Puntos.h"
-
+#include "ObjetoMovil.h"
 class Mundo
 {
 	Esfera esfera;
@@ -15,7 +15,7 @@ class Mundo
 	ListaBloques bloques;
 	Vidas vds;
 	Puntos punto;
-	
+	ObjetoMovil objetomovil;
 
 	int nivel;
 	float x_ojo;
