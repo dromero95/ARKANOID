@@ -55,6 +55,9 @@ void Mundo::mueve()
 	
 	if (bloques.lista[0]==00000000 && nivel==2)
 		Mundo::inicializaV3();
+
+	if (bloques.lista[0]==00000000 && nivel==3)
+		finDelJuego();
 }
 
 void Mundo::inicializa()
@@ -69,6 +72,8 @@ void Mundo::inicializa()
 	esfera.setRadio(0.6f); //Con este radio
 	esfera.setPos(0,2); //En esta posición inicial
 	esfera.setVel(0,0); // Parada, esperando a ser lanzada
+
+	esfera.especial=true; //Por defecto, la esfera no es "Especial"
 
 	ficha.setPos(2.0f,1,-2.0f,1); //Fijamos la posición de la ficha en el centro de la pantalla.
 
@@ -208,6 +213,17 @@ void Mundo::inicializaV3()
 	}
 }
 
+
+void Mundo::finDelJuego()
+{
+	cout<<"Fin del juego"<<endl;
+	ficha.setVel (0,0); //Fin del juego, la ficha queda inmovi
+	esfera.setVel (0,0);
+	esfera.setPos (0,2);
+	ficha.setPos (2.0f,1,-2.0f,1);
+	esfera.aceleracion.y=0;
+	nivel=0;
+}
 
 
 void Mundo::tecla(unsigned char key)

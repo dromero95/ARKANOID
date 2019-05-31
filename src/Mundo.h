@@ -18,6 +18,7 @@ class Mundo
 	ObjetoMovil objetomovil;
 
 	int nivel;
+
 	float x_ojo;
 	float y_ojo;
 	float z_ojo;
@@ -28,6 +29,7 @@ public:
 	void inicializaV1();
 	void inicializaV2();
 	void inicializaV3();
+	void finDelJuego();
 	void rotarOjo();
 	void mueve();
 	void dibuja();

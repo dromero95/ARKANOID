@@ -67,16 +67,28 @@ bool Interaccion::rebote(Esfera &e, Bloque b) //bool, es true si rebota alguna s
 
 bool Interaccion::rebote(Esfera &e, Planobloque pb)
 {
-	Vector2D dir; 
-	float dif=pb.distancia(e.posicion,&dir)-e.radio;
-	if(dif<=0.0f) //si la distancia entre la esfera y la pared es 0 o menos, cambia de dirección y velocidad
+	if (e.especial)
+	{
+		Vector2D dir; 
+		float dif=pb.distancia(e.posicion,&dir)-e.radio;
+		if(dif<=0.0f) //si la distancia entre la esfera y la pared es 0 o menos, detecta que choca pero no cambia nada
+			return true;
+		else
+			return false;
+	}
+	else 
+	{
+		Vector2D dir; 
+		float dif=pb.distancia(e.posicion,&dir)-e.radio;
+		if(dif<=0.0f) //si la distancia entre la esfera y la pared es 0 o menos, cambia de dirección y velocidad
 		{
-		Vector2D v_inicial=e.velocidad;
-		e.velocidad=v_inicial-dir*2.0*(v_inicial*dir);
-		e.posicion=e.posicion-dir*dif;
-		return true;
+			Vector2D v_inicial=e.velocidad;
+			e.velocidad=v_inicial-dir*2.0*(v_inicial*dir);
+			e.posicion=e.posicion-dir*dif;
+			return true;
 		}
-	return false;
+		return false;
+	}
 }
 
 
