@@ -4,6 +4,8 @@
 Coordinador::Coordinador(void)
 {
 	estado=INICIO;
+	ETSIDI::playMusica("musicas/industrial.mp3", true);
+
 }
 
 
@@ -21,7 +23,7 @@ void Coordinador::dibuja()
 	ETSIDI::setFont("fuentes/Bitwise.ttf",12);
 	ETSIDI::printxy("Francisco Muñoz", -10, 17);
 
-	if(estado==INICIO)
+	if(estado==INICIO) //Cuando le das a empezar el juego
 	{
 		gluLookAt(0.0 , 7.5, 30.0, 0.0, 7.5, 0.0, 0.0, 1.0, 0.0);
 		ETSIDI::setTextColor(1,1,0);
@@ -31,11 +33,13 @@ void Coordinador::dibuja()
 		ETSIDI::setFont("fuentes/Bitwise.ttf",12);
 		ETSIDI::printxy("PULSE LA TECLA -E- PARA EMPEZAR A JUGAR", -10, 7);
 		ETSIDI::printxy("PULSE LA TECLA -S PARA SALIR", -10, 6);
-		ETSIDI::printxy("Fran Munoz", -17, 1);
+		ETSIDI::printxy("Francisco Munoz", -17, 1);
+		ETSIDI::printxy("Dani Romero", -2, 1);
+		ETSIDI::printxy("David Navas", 13, 1);
 	}
-	else if (estado==JUEGO)
+	else if (estado==JUEGO) //Cuando se te acaban las vidas
 		mundo.dibuja();
-	else if (estado==GAMEOVER)
+	else if (estado==GAMEOVER) //Cuando se te acaban las vidas y pulsas c para continuar
 	{
 		mundo.dibuja();
 		ETSIDI::setTextColor(1,1,0);
@@ -43,7 +47,7 @@ void Coordinador::dibuja()
 		ETSIDI::printxy("GAMEOVER: Te has quedado sin vidas", -5, 10);
 		ETSIDI::printxy("Pulsa -c- para continuar", -5, 5);
 	}
-	else if (estado==FIN)
+	else if (estado==FIN) //Cuando superas los 3 niveles y y pulsas c para continuar
 	{
 		mundo.dibuja();
 		ETSIDI::setTextColor(1,1,1);
