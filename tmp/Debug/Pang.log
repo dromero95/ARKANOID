@@ -1,19 +1,29 @@
-﻿  Bloque.cpp
-  BloqueDoble.cpp
-  Caja.cpp
-  ColorRGB.cpp
-  Esfera.cpp
-  Ficha.cpp
-  Interaccion.cpp
-  ListaBloques.cpp
-  Mundo.cpp
-  ObjetoMovil.cpp
-  Pang.cpp
-  Pared.cpp
-  Planobloque.cpp
-  Puntos.cpp
-  Vector2D.cpp
-  vidas.cpp
-  Generando código...
-  C:\Users\Leadclic03\Desktop\ETSIDI\LAST\ARKANOID\src\ListaBloques.cpp(43) : warning C4715: 'ListaBloques::rebota': no todas las rutas de acceso de control devuelven un valor
-  Pang.vcxproj -> C:\Users\Leadclic03\Desktop\ETSIDI\LAST\ARKANOID\bin\Pang.exe
+﻿Compilación iniciada a las 08/06/2019 23:22:37.
+     1>Proyecto "C:\Users\F17MC\Desktop\Juego\JUEGO ARKANOID V4 plano\Pang.vcxproj" en el nodo 2 (Build destinos).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /Ilib /Isrc /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"tmp\Debug\\" /Fd"tmp\Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt src\Coordinador.cpp
+         Coordinador.cpp
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\F17MC\Desktop\Juego\JUEGO ARKANOID V4 plano\bin\Pang.exe" /INCREMENTAL /NOLOGO /LIBPATH:lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\F17MC\Desktop\Juego\JUEGO ARKANOID V4 plano\bin\Pang.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\F17MC\Desktop\Juego\JUEGO ARKANOID V4 plano\bin\Pang.lib" /MACHINE:X86 tmp\Debug\Bloque.obj
+         tmp\Debug\BloqueDoble.obj
+         tmp\Debug\Caja.obj
+         tmp\Debug\ColorRGB.obj
+         tmp\Debug\Coordinador.obj
+         tmp\Debug\Esfera.obj
+         tmp\Debug\Ficha.obj
+         tmp\Debug\Interaccion.obj
+         tmp\Debug\ListaBloques.obj
+         tmp\Debug\Mundo.obj
+         tmp\Debug\ObjetoMovil.obj
+         tmp\Debug\Pang.obj
+         tmp\Debug\Pared.obj
+         tmp\Debug\Planobloque.obj
+         tmp\Debug\Puntos.obj
+         tmp\Debug\Vector2D.obj
+         tmp\Debug\vidas.obj
+         Pang.vcxproj -> C:\Users\F17MC\Desktop\Juego\JUEGO ARKANOID V4 plano\bin\Pang.exe
+     1>Compilación del proyecto terminada "C:\Users\F17MC\Desktop\Juego\JUEGO ARKANOID V4 plano\Pang.vcxproj" (Build destinos).
+
+Compilación correcta.
+
+Tiempo transcurrido 00:00:02.32

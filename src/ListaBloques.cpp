@@ -40,6 +40,7 @@ Bloque * ListaBloques::rebota(Esfera &e) //Si una esfera choca con un bloque, de
 	for(int i=0;i<numero;i++)
 		if(Interaccion::rebote(e,*(lista[i])))//REBOTE DE LA ESFERA CON EL BLOQUE CONCRETO
 			return lista[i]; //Devuelve el bloque concreto
+		return 0; //Nos sirve para quitarnos un warning
 } 
 
 void ListaBloques::destruirContenido() //Destruir todos los bloques de la lista

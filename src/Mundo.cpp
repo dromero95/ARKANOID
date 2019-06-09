@@ -4,6 +4,8 @@
 #include "Interaccion.h"
 #include "Esfera.h"
 #include "Planobloque.h"
+#include "Bloque.h"
+#include "BloqueDoble.h"
 
 void Mundo::rotarOjo() //No tocar
 {
@@ -19,7 +21,6 @@ void Mundo::dibuja()
 	gluLookAt(x_ojo, y_ojo, z_ojo,  // posicion del ojo
 			0.0, y_ojo, 0.0,      // hacia que punto mira  (0,0,0) 
 			0.0, 1.0, 0.0);      // definimos hacia arriba (eje Y)    
-
 	ficha.dibuja(); //Dibuja la ficha
 	caja.dibuja(); //Dibuja la caja completa
 	bloques.dibuja(); //DIBUJO DE LISTABLOQUES!! Dibuja todos los bloques 
@@ -44,20 +45,12 @@ void Mundo::mueve()
 		esfera.setPos(0,2); //esfera en posición inicial
 		esfera.setVel(0,0);  //esfera parada esperando a ser lanzada
 		esfera.aceleracion.y=0; //esfera parada esperando ser lanzada
+		esfera.especial=false;
 	}
 
 	Bloque *aux=bloques.rebota(esfera);//Si la esfera choca con un bloque, nos devuelve el bloque con el que choca
 	if(aux!=0x000000)//si alguna esfera ha chocado ¿Es necesario?
 		bloques.eliminar(aux);//eliminamos el bloque que hemos tocado //AQUÍ ES DONDE SE GESTIONA EL BORRADO DEL BLOQUE QUE CHOCA
-	
-	if (bloques.lista[0]==00000000 && nivel==1) //AL BORRAR TODOS LOS BLOQUES, LA MEMORIA DEBERIA ESTAR A 0. ESTO CARGARIA LA PANTALLA 2 
-		Mundo::inicializaV2();
-	
-	if (bloques.lista[0]==00000000 && nivel==2)
-		Mundo::inicializaV3();
-
-	if (bloques.lista[0]==00000000 && nivel==3)
-		finDelJuego();
 }
 
 void Mundo::inicializa()
@@ -68,12 +61,12 @@ void Mundo::inicializa()
 	
 	nivel=1;
 	
-	esfera.setColor(0,0,255); //Establecemos la esfera de color rojo
-	esfera.setRadio(0.6f); //Con este radio
-	esfera.setPos(0,2); //En esta posición inicial
+	esfera.setColor(40,40,40); //Establecemos la esfera de color rojo
+	esfera.setRadio(0.5f); //Con este radio
+	esfera.setPos(0,1.5f); //En esta posición inicial
 	esfera.setVel(0,0); // Parada, esperando a ser lanzada
 
-	esfera.especial=true; //Por defecto, la esfera no es "Especial"
+	esfera.especial=true; //Por defecto, la esfera no es "Especial". Lo será al coger un bonus.
 
 	ficha.setPos(2.0f,1,-2.0f,1); //Fijamos la posición de la ficha en el centro de la pantalla.
 
@@ -81,6 +74,42 @@ void Mundo::inicializa()
 
 	//Cargamos la primera pantalla del juego
 	inicializaV1();
+}
+
+void Mundo::creaBloque(int h, int v)
+{
+	int horizontal=h;
+	int vertical=v;
+	Bloque* aux = new Bloque; // Creamos un bloque con NEW, y se lo asignamos a AUX. Utilizamos AUX para ahora darle posición y color a sus planos. 
+	//aux->frontal.setColor(150,150,150);
+	aux->frontal.setPos(-13.0f+horizontal,14.0f-vertical,-11.0f+horizontal,15.0f-vertical);
+	//aux->suelo.setColor(150,150,150);
+	aux->suelo.setPos(-13.0f+horizontal,14-vertical,-11.0f+horizontal,14-vertical);
+	//aux->techo.setColor(255,0,0);
+	aux->techo.setPos(-13.0f+horizontal,15.0f-vertical,-11.0f+horizontal,15.0f-vertical);
+	//aux->pared_dcha.setColor(150,150,150);
+	aux->pared_dcha.setPos(-13.0f+horizontal,14-vertical,-13.0f+horizontal,15.0f-vertical);
+	//aux->pared_izq.setColor(150,150,150);
+	aux->pared_izq.setPos(-11.0f+horizontal,14-vertical,-11.0f+horizontal,15.0f-vertical);
+	bloques.agregar(aux); //Agregamos el bloque a la lista 
+}
+
+void Mundo::creaBloqueEspecial(int h, int v)
+{
+	int horizontal=h;
+	int vertical=v;
+	Bloque* aux = new BloqueDoble; // Creamos un bloque con NEW, y se lo asignamos a AUX. Utilizamos AUX para ahora darle posición y color a sus planos. 
+	//aux->frontal.setColor(150,150,150);
+	aux->frontal.setPos(-13.0f+horizontal,14.0f-vertical,-11.0f+horizontal,15.0f-vertical);
+	//aux->suelo.setColor(150,150,150);
+	aux->suelo.setPos(-13.0f+horizontal,14-vertical,-11.0f+horizontal,14-vertical);
+	//aux->techo.setColor(255,0,0);
+	aux->techo.setPos(-13.0f+horizontal,15.0f-vertical,-11.0f+horizontal,15.0f-vertical);
+	//aux->pared_dcha.setColor(150,150,150);
+	aux->pared_dcha.setPos(-13.0f+horizontal,14-vertical,-13.0f+horizontal,15.0f-vertical);
+	//aux->pared_izq.setColor(150,150,150);
+	aux->pared_izq.setPos(-11.0f+horizontal,14-vertical,-11.0f+horizontal,15.0f-vertical);
+	bloques.agregar(aux); //Agregamos el bloque a la lista 
 }
 
 void Mundo::inicializaV1()
@@ -94,29 +123,30 @@ void Mundo::inicializaV1()
 	{
 		for (int i=0 ; i<13 ; i++) 
 		{
-			Bloque* aux = new Bloque; // Creamos un bloque con NEW, y se lo asignamos a AUX. Utilizamos AUX para ahora darle posición y color a sus planos. 
-			aux->frontal.setColor(255,0,0);
-			aux->frontal.setPos(-13.0f+horizontal,14.0f-vertical,-11.0f+horizontal,15.0f-vertical);
-			aux->suelo.setColor(255,0,0);
-			aux->suelo.setPos(-13.0f+horizontal,14-vertical,-11.0f+horizontal,14-vertical);
-			aux->techo.setColor(255,0,0);
-			aux->techo.setPos(-13.0f+horizontal,15.0f-vertical,-11.0f+horizontal,15.0f-vertical);
-			aux->pared_dcha.setColor(150,150,150);
-			aux->pared_dcha.setPos(-13.0f+horizontal,14-vertical,-13.0f+horizontal,15.0f-vertical);
-			aux->pared_izq.setColor(150,150,150);
-			aux->pared_izq.setPos(-11.0f+horizontal,14-vertical,-11.0f+horizontal,15.0f-vertical);
-			bloques.agregar(aux); //Agregamos el bloque a la lista 
+			creaBloque(horizontal,vertical);
 			//cout<<bloques.lista[i]<<endl;
-			horizontal=horizontal+2; //pasamos al siguiente bloque horizontal
+			horizontal+=2; //pasamos al siguiente bloque horizontal
 		}
 		horizontal=0; //volvemos al principio de la fila horizontal
-		vertical=vertical+1; //añadimos una fila 
+		vertical+=1; //añadimos una fila 
+	}
+	for (int j=0; j<1; j++) //3 filas  //SI SE PONE J<0, CARGA EL NIVEL 2 
+	{
+		for (int i=0 ; i<13 ; i++) 
+		{
+			creaBloqueEspecial(horizontal,vertical);
+			//cout<<bloques.lista[i]<<endl;
+			horizontal+=2; //pasamos al siguiente bloque horizontal
+		}
+		horizontal=0; //volvemos al principio de la fila horizontal
+		vertical+=1; //añadimos una fila 
 	}
 
 }
 void Mundo::inicializaV2()
 {
 	nivel=2;
+	esfera.especial=true;
 	cout<<"Primer nivel superado. Siguiente nivel: Nivel 2."<<endl;
 	esfera.setPos(0,2); //esfera en posición inicial
 	esfera.setVel(0,0);  //esfera parada esperando a ser lanzada
@@ -124,37 +154,38 @@ void Mundo::inicializaV2()
 	ficha.setPos(2.0f,1,-2.0f,1);
 	ficha.setVel(0,0);
 
-
 	int horizontal=0;
 	int vertical=0;
 	int num=7, i=1;
-	for (int i=0; i<num; i++) 
+
+	for (int j=0; j<1; j++) //3 filas  //SI SE PONE J<0, CARGA EL NIVEL 2 
 	{
-		int j=1;
-		for (int j=1 ; j<=i; j++) {horizontal=horizontal+2;}
-		for (int k=0; k<2*(num-i)-1; k++)
+		for (int i=0 ; i<13 ; i++) 
 		{
-			Bloque* aux = new Bloque; // Creamos un bloque con NEW, y se lo asignamos a AUX. Utilizamos AUX para ahora darle posición y color a sus planos. 
-			aux->frontal.setColor(255,0,0);
-			aux->frontal.setPos(-13.0f+horizontal,14.0f-vertical,-11.0f+horizontal,15.0f-vertical);
-			aux->suelo.setColor(255,0,0);
-			aux->suelo.setPos(-13.0f+horizontal,14-vertical,-11.0f+horizontal,14-vertical);
-			aux->techo.setColor(255,0,0);
-			aux->techo.setPos(-13.0f+horizontal,15.0f-vertical,-11.0f+horizontal,15.0f-vertical);
-			aux->pared_dcha.setColor(150,150,150);
-			aux->pared_dcha.setPos(-13.0f+horizontal,14-vertical,-13.0f+horizontal,15.0f-vertical);
-			aux->pared_izq.setColor(150,150,150);
-			aux->pared_izq.setPos(-11.0f+horizontal,14-vertical,-11.0f+horizontal,15.0f-vertical);
-			bloques.agregar(aux); //Agregamos el bloque a la lista 
-			horizontal=horizontal+2; //pasamos al siguiente bloque horizontal
+			creaBloqueEspecial(horizontal,vertical);
+			//cout<<bloques.lista[i]<<endl;
+			horizontal+=2; //pasamos al siguiente bloque horizontal
 		}
 		horizontal=0; //volvemos al principio de la fila horizontal
-		vertical=vertical+1; //añadimos una fila 
+		vertical+=1; //añadimos una fila 
+	}
+	for (int i=1; i<num; i++) 
+	{
+		int j=1;
+		for (int j=1 ; j<=i; j++) {horizontal+=2;}
+		for (int k=0; k<2*(num-i)-1; k++)
+		{
+			creaBloque(horizontal,vertical); 
+			horizontal+=2; //pasamos al siguiente bloque horizontal
+		}
+		horizontal=0; //volvemos al principio de la fila horizontal
+		vertical+=1; //añadimos una fila 
 	}
 }
 void Mundo::inicializaV3()
 {
 	nivel=3;
+	esfera.especial=true;
 	cout<<"Segundo nivel superado. Siguiente nivel: Nivel 3."<<endl;
 	esfera.setPos(0,2); //esfera en posición inicial
 	esfera.setVel(0,0);  //esfera parada esperando a ser lanzada
@@ -171,22 +202,11 @@ void Mundo::inicializaV3()
 		for (int j=1 ; j<=num-i; j++) {horizontal=horizontal+2;}
 		for (int k=0; k<2*i-1; k++)
 		{
-			Bloque* aux = new Bloque; // Creamos un bloque con NEW, y se lo asignamos a AUX. Utilizamos AUX para ahora darle posición y color a sus planos. 
-			aux->frontal.setColor(255,0,0);
-			aux->frontal.setPos(-13.0f+horizontal,14.0f-vertical,-11.0f+horizontal,15.0f-vertical);
-			aux->suelo.setColor(255,0,0);
-			aux->suelo.setPos(-13.0f+horizontal,14-vertical,-11.0f+horizontal,14-vertical);
-			aux->techo.setColor(255,0,0);
-			aux->techo.setPos(-13.0f+horizontal,15.0f-vertical,-11.0f+horizontal,15.0f-vertical);
-			aux->pared_dcha.setColor(150,150,150);
-			aux->pared_dcha.setPos(-13.0f+horizontal,14-vertical,-13.0f+horizontal,15.0f-vertical);
-			aux->pared_izq.setColor(150,150,150);
-			aux->pared_izq.setPos(-11.0f+horizontal,14-vertical,-11.0f+horizontal,15.0f-vertical);
-			bloques.agregar(aux); //Agregamos el bloque a la lista 
-			horizontal=horizontal+2; //pasamos al siguiente bloque horizontal
+			creaBloque(horizontal,vertical);
+			horizontal+=2; //pasamos al siguiente bloque horizontal
 		}
 		horizontal=6; //volvemos al principio de la fila horizontal
-		vertical=vertical+1; //añadimos una fila 
+		vertical+=1; //añadimos una fila 
 	}
 		for (int i=0; i<num; i++) 
 	{
@@ -194,22 +214,11 @@ void Mundo::inicializaV3()
 		for (int j=1 ; j<=i; j++) {horizontal=horizontal+2;}
 		for (int k=0; k<2*(num-i)-1; k++)
 		{
-			Bloque* aux = new Bloque; // Creamos un bloque con NEW, y se lo asignamos a AUX. Utilizamos AUX para ahora darle posición y color a sus planos. 
-			aux->frontal.setColor(255,0,0);
-			aux->frontal.setPos(-13.0f+horizontal,14.0f-vertical,-11.0f+horizontal,15.0f-vertical);
-			aux->suelo.setColor(255,0,0);
-			aux->suelo.setPos(-13.0f+horizontal,14-vertical,-11.0f+horizontal,14-vertical);
-			aux->techo.setColor(255,0,0);
-			aux->techo.setPos(-13.0f+horizontal,15.0f-vertical,-11.0f+horizontal,15.0f-vertical);
-			aux->pared_dcha.setColor(150,150,150);
-			aux->pared_dcha.setPos(-13.0f+horizontal,14-vertical,-13.0f+horizontal,15.0f-vertical);
-			aux->pared_izq.setColor(150,150,150);
-			aux->pared_izq.setPos(-11.0f+horizontal,14-vertical,-11.0f+horizontal,15.0f-vertical);
-			bloques.agregar(aux); //Agregamos el bloque a la lista 
-			horizontal=horizontal+2; //pasamos al siguiente bloque horizontal
+			creaBloqueEspecial(horizontal,vertical);
+			horizontal+=2; //pasamos al siguiente bloque horizontal
 		}
 		horizontal=6; //volvemos al principio de la fila horizontal
-		vertical=vertical+1; //añadimos una fila 
+		vertical+=1; //añadimos una fila 
 	}
 }
 

@@ -1,4 +1,5 @@
 #include "Ficha.h"
+#include "ETSIDI.h"
 #include "glut.h"
 
 Ficha::Ficha() //Constructor por defecto de la ficha
@@ -13,15 +14,19 @@ void Ficha::dibuja() //Codigo para dibujar la ficha
 {
 	glPushMatrix();
 	glTranslatef(posicion.x,posicion.y,0);
+	glEnable(GL_TEXTURE_2D);
+	glBindTexture(GL_TEXTURE_2D, ETSIDI::getTexture("imagenes/ficha.png").id);
+	
 	glDisable(GL_LIGHTING);
-	glColor3d(255,0,0);
+	glColor3d(1,1,1);
 	glBegin(GL_POLYGON);
-		glVertex3d(limite1.x,limite1.y,3);
-		glVertex3d(limite2.x,limite2.y,3);
-		glVertex3d(limite2.x,limite2.y,-3);
-		glVertex3d(limite1.x,limite1.y,-3);
+		glTexCoord2d(0.0,1.0); glVertex3d(-2,0.5,0.0);
+		glTexCoord2d(1.0,1.0); glVertex3d(2,0.5,0);
+		glTexCoord2d(1.0,0.0); glVertex3d(2,1,0);
+		glTexCoord2d(0.0,0.0); glVertex3d(-2,1,0);
 	glEnd();
 	glEnable(GL_LIGHTING);
+	glDisable(GL_TEXTURE_2D);
 	glPopMatrix();
 }
 
