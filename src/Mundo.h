@@ -6,6 +6,8 @@
 #include "Vidas.h"
 #include "Puntos.h"
 #include "ObjetoMovil.h"
+#include "Bonus.h"
+
 class Mundo
 {
 	Esfera esfera;
@@ -16,11 +18,14 @@ class Mundo
 	Vidas vds;
 	Puntos punto;
 	ObjetoMovil objetomovil;
+	Bonus bonus;
 
 	int nivel;
 	float x_ojo;
 	float y_ojo;
 	float z_ojo;
+
+	int contador;
 
 public: 
 	void tecla(unsigned char key);

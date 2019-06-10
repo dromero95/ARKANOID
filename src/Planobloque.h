@@ -5,6 +5,7 @@
 
 class Planobloque
 {
+	friend class Bonus;
 	friend class Interaccion;
 public:
 	Planobloque();

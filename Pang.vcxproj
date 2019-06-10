@@ -84,6 +84,7 @@
   <ItemGroup>
     <ClCompile Include="src\Bloque.cpp" />
     <ClCompile Include="src\BloqueDoble.cpp" />
+    <ClCompile Include="src\Bonus.cpp" />
     <ClCompile Include="src\Caja.cpp" />
     <ClCompile Include="src\ColorRGB.cpp" />
     <ClCompile Include="src\Coordinador.cpp" />
@@ -103,6 +104,7 @@
   <ItemGroup>
     <ClInclude Include="src\Bloque.h" />
     <ClInclude Include="src\BloqueDoble.h" />
+    <ClInclude Include="src\Bonus.h" />
     <ClInclude Include="src\Caja.h" />
     <ClInclude Include="src\ColorRGB.h" />
     <ClInclude Include="src\Coordinador.h" />

@@ -5,6 +5,7 @@
 #include "Esfera.h"
 #include "Bloque.h"
 #include "ListaBloques.h"
+#include "Bonus.h"
 class Interaccion  
 {
 public:
@@ -17,6 +18,7 @@ public:
 	static bool rebote(Esfera &e, Planobloque pb);
 	static bool rebote(Esfera &e, Bloque b);
 	static bool rebote(Esfera &e, ListaBloques *lb);
+	static bool intercepta(Bonus bonus, Ficha h);
 };
 
 

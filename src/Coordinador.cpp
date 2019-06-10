@@ -5,7 +5,7 @@ Coordinador::Coordinador(void)
 {
 	estado=INICIO;
 	ETSIDI::playMusica("musicas/industrial.mp3", true);
-
+	
 }
 
 
@@ -41,43 +41,45 @@ void Coordinador::dibuja()
 		mundo.dibuja();
 	else if (estado==GAMEOVER) //Cuando se te acaban las vidas y pulsas c para continuar
 	{
-		mundo.dibuja();
+		ETSIDI::stopMusica();
+		ETSIDI::playMusica("musicas/fail2.mp3", false);
 		ETSIDI::setTextColor(1,1,0);
 		ETSIDI::setFont("fuentes/Bitwise.ttf", 16);
 		ETSIDI::printxy("GAMEOVER: Te has quedado sin vidas", -5, 10);
 		ETSIDI::printxy("Pulsa -c- para continuar", -5, 5);
+		mundo.dibuja();
 	}
 	else if (estado==FIN) //Cuando superas los 3 niveles y y pulsas c para continuar
 	{
-		mundo.dibuja();
 		ETSIDI::setTextColor(1,1,1);
 		ETSIDI::setFont("fuentes/Bitwise.ttf", 16);
 		ETSIDI::printxy("ENHORABUENA, HAS GANADO.", -5,10);
 		ETSIDI::printxy("Pulsa -c- para continuar", -5, 9);
+		mundo.dibuja();
 	}
 	else if (estado==PAUSA)
 	{
-		mundo.dibuja();
 		ETSIDI::setTextColor(1,0,0);
 		ETSIDI::setFont("fuentes/Bitwise.ttf", 16);
 		ETSIDI::printxy("PAUSA, NO TARDES!", -5,10);
 		ETSIDI::printxy("Pulsa -c- para continuar", -5, 9);
+		mundo.dibuja();
 	}
 	else if (estado==NIVEL1)
 	{
-		mundo.dibuja();
 		ETSIDI::setTextColor(1,1,0);
 		ETSIDI::setFont("fuentes/Bitwise.ttf", 16);
 		ETSIDI::printxy("PRIMER NIVEL SUPERADO!", -5,10);
 		ETSIDI::printxy("Pulsa -c- para continuar", -5, 9);
+		mundo.dibuja();
 	}
 	else if (estado==NIVEL2)
 	{
-		mundo.dibuja();
 		ETSIDI::setTextColor(1,1,0);
 		ETSIDI::setFont("fuentes/Bitwise.ttf", 16);
 		ETSIDI::printxy("SEGUNDO NIVEL SUPERADO!", -5,10);
 		ETSIDI::printxy("Pulsa -c- para continuar", -5, 9);
+		mundo.dibuja();
 	}
 }
 
@@ -118,7 +120,7 @@ void Coordinador::tecla(unsigned char key)
 	}
 	else if (estado==PAUSA)
 	{
-		if (key=='r')
+		if (key=='c')
 		{
 			estado=JUEGO;
 		}

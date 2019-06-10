@@ -1,5 +1,6 @@
 #include "Bloque.h"
 #include "Interaccion.h"
+#include "Bonus.h"
 
 Bloque::Bloque(void) //Creación por defecto
 {
@@ -22,7 +23,6 @@ void Bloque::dibuja() //Dibuja las 5 caras (salvo la trasera) de un cubo
 	pared_izq.dibuja();
 	pared_dcha.dibuja();
 	frontal.dibujaFrontal();
-
 }
 
 bool Bloque::rebota(Esfera &e) //devuelve si choca o no.

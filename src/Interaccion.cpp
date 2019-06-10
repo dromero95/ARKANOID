@@ -1,6 +1,7 @@
 #include "Interaccion.h"
 #include <cmath>
-
+#include <iostream>
+using namespace std;
 Interaccion::Interaccion(void)
 {
 }
@@ -59,8 +60,10 @@ bool Interaccion::rebote(Esfera &e, Ficha h) //Funciona, no tocar
 
 bool Interaccion::rebote(Esfera &e, Bloque b) //bool, es true si rebota alguna superficie del bloque con la pelota
 {
-	if (rebote(e,b.suelo)||rebote(e,b.techo)||rebote(e,b.pared_dcha)||rebote(e,b.pared_izq)) 
+	if (rebote(e,b.suelo)||rebote(e,b.techo)||rebote(e,b.pared_dcha)||rebote(e,b.pared_izq))
+	{
 		return true;
+	}
 	else
 		return false;
 }
@@ -91,4 +94,15 @@ bool Interaccion::rebote(Esfera &e, Planobloque pb)
 	}
 }
 
+bool Interaccion::intercepta(Bonus bonus, Ficha h) //Funciona, no tocar
+{
+	Vector2D dir;
+	float dif=h.distancia(bonus.posicion,&dir)-bonus.lado;
+	if(dif<=0.0f)
+		{
 
+		cout<<"BONUS COGIDO"<<endl;
+		return true;
+		}
+	return false;	
+}

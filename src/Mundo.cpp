@@ -25,6 +25,7 @@ void Mundo::dibuja()
 	caja.dibuja(); //Dibuja la caja completa
 	bloques.dibuja(); //DIBUJO DE LISTABLOQUES!! Dibuja todos los bloques 
 	esfera.dibuja(); //Dibuja las esferas
+	bonus.dibuja();
 }
 
 void Mundo::mueve()
@@ -32,9 +33,16 @@ void Mundo::mueve()
 	ficha.mueve(0.09f); //MOVIMIENTO DE LA FICHA ROJA
 	ficha.setVel(0.0f,0.0f); //PARA QUE LA FICHA NO SE MUEVA SI NO SE PULSA UNA TECLA
 	esfera.mueve(0.025f); //MOVIMIENTO DE LA ESFERA
+	bonus.mueve(0.025f); //MOVIMIENTO DEL BONUS
 	Interaccion::rebote(ficha,caja); //LIMITE DE LA CAJA PARA LA FICHA
 	Interaccion::rebote(esfera,caja); //CHOQUES ENTRE LA CAJA Y LA ESFERA
 	Interaccion::rebote(esfera, ficha); //REBOTE ENTRE LA ESFERA Y LA FICHA
+	
+	if (Interaccion::intercepta(bonus, ficha))
+	{
+		esfera.especial=true;
+		esfera.setColor(255,150,150);
+	}
 
 	// AQUÍ ESTÁ LA LÓGICA DEL JUEGO
 	
@@ -46,11 +54,25 @@ void Mundo::mueve()
 		esfera.setVel(0,0);  //esfera parada esperando a ser lanzada
 		esfera.aceleracion.y=0; //esfera parada esperando ser lanzada
 		esfera.especial=false;
+		esfera.setColor(40,40,40);
 	}
 
+	
+	
 	Bloque *aux=bloques.rebota(esfera);//Si la esfera choca con un bloque, nos devuelve el bloque con el que choca
 	if(aux!=0x000000)//si alguna esfera ha chocado ¿Es necesario?
+	{	
+		if(!(contador%10))
+		{
+			bonus.dibuja();
+			bonus.setPos(aux->suelo);
+			bonus.setVel(0);
+			
+		}
+		contador++;
+
 		bloques.eliminar(aux);//eliminamos el bloque que hemos tocado //AQUÍ ES DONDE SE GESTIONA EL BORRADO DEL BLOQUE QUE CHOCA
+	}
 }
 
 void Mundo::inicializa()
@@ -61,12 +83,14 @@ void Mundo::inicializa()
 	
 	nivel=1;
 	
+	contador=1;
+	
 	esfera.setColor(40,40,40); //Establecemos la esfera de color rojo
 	esfera.setRadio(0.5f); //Con este radio
 	esfera.setPos(0,1.5f); //En esta posición inicial
 	esfera.setVel(0,0); // Parada, esperando a ser lanzada
 
-	esfera.especial=true; //Por defecto, la esfera no es "Especial". Lo será al coger un bonus.
+	esfera.especial=false; //Por defecto, la esfera no es "Especial". Lo será al coger un bonus.
 
 	ficha.setPos(2.0f,1,-2.0f,1); //Fijamos la posición de la ficha en el centro de la pantalla.
 
@@ -74,6 +98,8 @@ void Mundo::inicializa()
 
 	//Cargamos la primera pantalla del juego
 	inicializaV1();
+
+
 }
 
 void Mundo::creaBloque(int h, int v)
@@ -147,6 +173,7 @@ void Mundo::inicializaV2()
 {
 	nivel=2;
 	esfera.especial=true;
+	esfera.setColor(40,40,40);
 	cout<<"Primer nivel superado. Siguiente nivel: Nivel 2."<<endl;
 	esfera.setPos(0,2); //esfera en posición inicial
 	esfera.setVel(0,0);  //esfera parada esperando a ser lanzada
@@ -186,6 +213,7 @@ void Mundo::inicializaV3()
 {
 	nivel=3;
 	esfera.especial=true;
+	esfera.setColor(40,40,40);
 	cout<<"Segundo nivel superado. Siguiente nivel: Nivel 3."<<endl;
 	esfera.setPos(0,2); //esfera en posición inicial
 	esfera.setVel(0,0);  //esfera parada esperando a ser lanzada

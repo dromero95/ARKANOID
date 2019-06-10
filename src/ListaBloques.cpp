@@ -3,6 +3,7 @@
 #include "Esfera.h"
 #include "iostream"
 #include "Puntos.h"
+
 using namespace std;
 Puntos punto; //Creamos aquí el objeto punto para poder incrementar los puntos cuando un bloque sea destruido.
 
@@ -59,6 +60,7 @@ void ListaBloques::eliminar(int index)
 	for (int i=index;i<numero;i++) //Volvemos a ordenar los bloques en la lista
 		lista[i]=lista[i+1];
 	lista[numero]=00000000; //La ultima posicion ocupada la ponemos a 0.
+
 }
 
 void ListaBloques::eliminar(Bloque *b) //Pasamos el bloque que queremos eliminar //ESTA ES LA FUNCIÓN QUE SE EJECUTA PARA ELIMINAR UN BLOQUE QUE CHOCA CON LA PELOTA
