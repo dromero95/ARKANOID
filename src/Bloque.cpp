@@ -13,7 +13,6 @@ Bloque::~Bloque(void) //Destruye todas las paredes con su destructor
 	pared_dcha.~Planobloque();
 	pared_izq.~Planobloque();
 	frontal.~Planobloque();
-
 }
 
 void Bloque::dibuja() //Dibuja las 5 caras (salvo la trasera) de un cubo
@@ -23,6 +22,7 @@ void Bloque::dibuja() //Dibuja las 5 caras (salvo la trasera) de un cubo
 	pared_izq.dibuja();
 	pared_dcha.dibuja();
 	frontal.dibujaFrontal();
+
 }
 
 bool Bloque::rebota(Esfera &e) //devuelve si choca o no.

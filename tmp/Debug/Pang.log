@@ -1,7 +1,11 @@
 ﻿  Bloque.cpp
   BloqueDoble.cpp
   Caja.cpp
+C:\Users\dromero\Desktop\A\Arkanoid Final\src\Caja.cpp(41,52): warning C4305:  'argumento': truncamiento de 'double' a 'GLfloat'
+C:\Users\dromero\Desktop\A\Arkanoid Final\src\Caja.cpp(42,51): warning C4305:  'argumento': truncamiento de 'double' a 'GLfloat'
+C:\Users\dromero\Desktop\A\Arkanoid Final\src\Caja.cpp(43,51): warning C4305:  'argumento': truncamiento de 'double' a 'GLfloat'
   ColorRGB.cpp
+  Coordinador.cpp
   Esfera.cpp
   Ficha.cpp
   Interaccion.cpp
@@ -15,5 +19,5 @@
   Vector2D.cpp
   vidas.cpp
   Generando código...
-  C:\Users\Leadclic03\Desktop\ETSIDI\LAST\ARKANOID\src\ListaBloques.cpp(43) : warning C4715: 'ListaBloques::rebota': no todas las rutas de acceso de control devuelven un valor
-  Pang.vcxproj -> C:\Users\Leadclic03\Desktop\ETSIDI\LAST\ARKANOID\bin\Pang.exe
+C:\Users\dromero\Desktop\A\Arkanoid Final\src\Caja.cpp(44,52): warning C4305:  'argumento': truncamiento de 'double' a 'GLfloat'
+  Pang.vcxproj -> C:\Users\dromero\Desktop\A\Arkanoid Final\bin\Pang.exe

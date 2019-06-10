@@ -8,5 +8,6 @@ class BloqueDoble : public Bloque
 public:
 	BloqueDoble();
 	~BloqueDoble();
+	virtual void dibuja();
 };
 

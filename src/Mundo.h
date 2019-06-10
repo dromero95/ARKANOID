@@ -18,10 +18,10 @@ class Mundo
 	ObjetoMovil objetomovil;
 
 	int nivel;
-
 	float x_ojo;
 	float y_ojo;
 	float z_ojo;
+
 public: 
 	void tecla(unsigned char key);
 	void teclaEspecial(unsigned char key);
@@ -33,5 +33,10 @@ public:
 	void rotarOjo();
 	void mueve();
 	void dibuja();
+	void creaBloque(int h, int v);
+	void creaBloqueEspecial(int h, int v);
+
 	~Mundo();
+
+	friend class Coordinador;
 };

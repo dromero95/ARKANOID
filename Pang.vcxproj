@@ -82,11 +82,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Bonus.cpp" />
     <ClCompile Include="src\Bloque.cpp" />
     <ClCompile Include="src\BloqueDoble.cpp" />
     <ClCompile Include="src\Caja.cpp" />
     <ClCompile Include="src\ColorRGB.cpp" />
+    <ClCompile Include="src\Coordinador.cpp" />
     <ClCompile Include="src\Esfera.cpp" />
     <ClCompile Include="src\Ficha.cpp" />
     <ClCompile Include="src\Interaccion.cpp" />
@@ -101,11 +101,11 @@
     <ClCompile Include="src\vidas.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Bonus.h" />
     <ClInclude Include="src\Bloque.h" />
     <ClInclude Include="src\BloqueDoble.h" />
     <ClInclude Include="src\Caja.h" />
     <ClInclude Include="src\ColorRGB.h" />
+    <ClInclude Include="src\Coordinador.h" />
     <ClInclude Include="src\Esfera.h" />
     <ClInclude Include="src\Ficha.h" />
     <ClInclude Include="src\Interaccion.h" />

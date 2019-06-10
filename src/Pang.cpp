@@ -1,7 +1,7 @@
-#include "Mundo.h"
+#include "Coordinador.h"
 #include "glut.h"
 
-Mundo mundo; //Creación del objeto mundo que contine todo lo demás.
+Coordinador arkanoid; //Creación del objeto mundo que contine todo lo demás.
 
 void onDraw(void); //esta funcion sera llamada para dibujar
 void onTimer(int value); //esta funcion sera llamada cuando transcurra una temporizacion
@@ -30,7 +30,7 @@ int main(int argc,char* argv[])
 	glutKeyboardFunc(onKeyboardDown);
 	glutSpecialFunc(onSpecialKeyboardDown);
 
-	mundo.inicializa(); //Inicializamos el mundo
+	//mundo.inicializa(); //Inicializamos el mundo
 		
 	glutMainLoop();	
 
@@ -46,7 +46,25 @@ void onDraw(void)
 	glMatrixMode(GL_MODELVIEW);	
 	glLoadIdentity();
 	
-	mundo.dibuja(); //Dibujamos el mundo
+	arkanoid.dibuja(); //Dibujamos el mundo
+
+	glEnable(GL_TEXTURE_2D);
+  
+	glBindTexture(GL_TEXTURE_2D, ETSIDI::getTexture("imagenes/fondoprincipal.png").id);
+	glDisable(GL_LIGHTING);
+	glBegin(GL_POLYGON);
+	glColor3f(1,1,1);
+	
+	glTexCoord2d(0,1);		glVertex3f(-15,0,-0.1);
+	glTexCoord2d(1,1);		glVertex3f(15,0,-0.1);
+	glTexCoord2d(1,0);		glVertex3f(15,17,-0.1);
+	glTexCoord2d(0,0);		glVertex3f(-15,17,-0.1);
+	glEnd();
+
+	glEnable(GL_LIGHTING);	
+	glDisable(GL_TEXTURE_2D);
+	
+	arkanoid.dibuja(); //Dibujamos el mundo
 
 	//no borrar esta linea ni poner nada despues
 	glutSwapBuffers();
@@ -55,19 +73,19 @@ void onDraw(void)
 void onKeyboardDown(unsigned char key, int x_t, int y_t)
 {
 	//poner aqui el código de teclado
-	mundo.tecla(key);
+	arkanoid.tecla(key);
 
 	glutPostRedisplay();
 }
 void onSpecialKeyboardDown(int key, int x, int y)
 {
-	mundo.teclaEspecial(key);
+	arkanoid.teclaEspecial(key);
 }
 
 void onTimer(int value)
 {
 //poner aqui el código de animacion
-	mundo.mueve();
+	arkanoid.mueve();
 
 	//no borrar estas lineas
 	glutTimerFunc(25,onTimer,0);
