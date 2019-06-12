@@ -56,7 +56,7 @@ void Coordinador::dibuja()
 	{
 		ETSIDI::setTextColor(1,0,0);
 		ETSIDI::setFont("fuentes/Bitwise.ttf", 16);
-		ETSIDI::printxy("GAMEOVER: Te has quedado sin vidas", -5, 5);
+		ETSIDI::printxy("GAMEOVER: Te has quedado sin vidas", -5, 6);
 		ETSIDI::printxy("Pulsa -c- para continuar", -5, 4);
 		ETSIDI::setTextColor(1,0,0);
 		ETSIDI::setFont("fuentes/Bitwise.ttf",16);
