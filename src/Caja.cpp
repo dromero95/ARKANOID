@@ -38,10 +38,10 @@ void Caja::dibuja() //Dibuja cada plano
 	glBegin(GL_POLYGON);
 	glColor3f(1,1,1);
 	
-	glTexCoord2d(0.0,1.0);		glVertex3f(-13.0,-3.0,-0.1);
-	glTexCoord2d(1.0,1.0);		glVertex3f(13.0,-3.0,-0.1);
-	glTexCoord2d(1.0,0.0);		glVertex3f(13.0,15.0,-0.1);
-	glTexCoord2d(0.0,0.0);		glVertex3f(-13.0,15.0,-0.1);
+	glTexCoord2d(0.0,1.0);		glVertex3d(-13.0,-3.0,-0.1);
+	glTexCoord2d(1.0,1.0);		glVertex3d(13.0,-3.0,-0.1);
+	glTexCoord2d(1.0,0.0);		glVertex3d(13.0,15.0,-0.1);
+	glTexCoord2d(0.0,0.0);		glVertex3d(-13.0,15.0,-0.1);
 	glEnd();
 
 	glEnable(GL_LIGHTING);	

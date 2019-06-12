@@ -70,8 +70,6 @@ void ListaBloques::eliminar(Bloque *b) //Pasamos el bloque que queremos eliminar
 		{
 			eliminar(i); //Esta función llama a a de arriba, pasándolo el índice de la lista
 			// cout << "Eliminado el bloque: " << lista[i]<<endl; //NOS PERMITE VER QUE BLOQUE ELIMINAMOS
-			punto.incrementaPuntos();
-			punto.imprimePuntos();
 		}
 } 
 

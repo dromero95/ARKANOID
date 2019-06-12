@@ -1,6 +1,6 @@
 #include "Coordinador.h"
 #include <windows.h>
-
+#include "Puntos.h"
 Coordinador::Coordinador(void)
 {
 	estado=INICIO;
@@ -17,16 +17,12 @@ void Coordinador::dibuja()
 {
 	ETSIDI::setTextColor(1,1,0);
 	ETSIDI::setFont("fuentes/Bitwise.ttf",16);
-	ETSIDI::printxy("Arkanoid V.Final", -10, 17);
-
-	ETSIDI::setTextColor(1,1,1);
-	ETSIDI::setFont("fuentes/Bitwise.ttf",12);
-	ETSIDI::printxy("Francisco Muñoz", -10, 17);
+	ETSIDI::printxy("Arkanoid V.Final", -12, 16);
 
 	if(estado==INICIO) //Cuando le das a empezar el juego
 	{
 		gluLookAt(0.0 , 7.5, 30.0, 0.0, 7.5, 0.0, 0.0, 1.0, 0.0);
-		ETSIDI::setTextColor(1,1,0);
+		ETSIDI::setTextColor(1,0,0);
 		ETSIDI::setFont("fuentes/Bitwise.ttf",16);
 		ETSIDI::printxy("Arkanoid V.Final", -5, 8);
 		ETSIDI::setTextColor(1,1,1);
@@ -38,47 +34,69 @@ void Coordinador::dibuja()
 		ETSIDI::printxy("David Navas", 13, 1);
 	}
 	else if (estado==JUEGO) //Cuando se te acaban las vidas
+	{
+		ETSIDI::setTextColor(1,0,0);
+		ETSIDI::setFont("fuentes/Bitwise.ttf",12);
+		ETSIDI::printxy("Puntuacion: ", 0, 16);
+		mundo.punto.getPuntosItoa();
+		ETSIDI::setTextColor(1,1,1);
+		ETSIDI::setFont("fuentes/Bitwise.ttf",12);
+		ETSIDI::printxy(mundo.punto.npuntos , 4, 16);
+		mundo.vds.getVidasItoa();
+		ETSIDI::setTextColor(1,0,0);
+		ETSIDI::setFont("fuentes/Bitwise.ttf",12);
+		ETSIDI::printxy("Vidas: ", 10, 16);
+
+		ETSIDI::setTextColor(1,1,1);
+		ETSIDI::setFont("fuentes/Bitwise.ttf",12);
+		ETSIDI::printxy(mundo.vds.nvidas , 12, 16);
 		mundo.dibuja();
+	}
 	else if (estado==GAMEOVER) //Cuando se te acaban las vidas y pulsas c para continuar
 	{
-		ETSIDI::stopMusica();
-		ETSIDI::playMusica("musicas/fail2.mp3", false);
-		ETSIDI::setTextColor(1,1,0);
+		ETSIDI::setTextColor(1,0,0);
 		ETSIDI::setFont("fuentes/Bitwise.ttf", 16);
-		ETSIDI::printxy("GAMEOVER: Te has quedado sin vidas", -5, 10);
-		ETSIDI::printxy("Pulsa -c- para continuar", -5, 5);
+		ETSIDI::printxy("GAMEOVER: Te has quedado sin vidas", -5, 5);
+		ETSIDI::printxy("Pulsa -c- para continuar", -5, 4);
+		ETSIDI::setTextColor(1,0,0);
+		ETSIDI::setFont("fuentes/Bitwise.ttf",16);
+		ETSIDI::printxy("Puntuacion final: ", -5, 5);
+		mundo.punto.getPuntosItoa();
+		ETSIDI::setTextColor(1,1,1);
+		ETSIDI::setFont("fuentes/Bitwise.ttf",16);
+		ETSIDI::printxy(mundo.punto.npuntos , 1, 5);
 		mundo.dibuja();
 	}
 	else if (estado==FIN) //Cuando superas los 3 niveles y y pulsas c para continuar
 	{
-		ETSIDI::setTextColor(1,1,1);
+		ETSIDI::setTextColor(1,0,0);
 		ETSIDI::setFont("fuentes/Bitwise.ttf", 16);
-		ETSIDI::printxy("ENHORABUENA, HAS GANADO.", -5,10);
-		ETSIDI::printxy("Pulsa -c- para continuar", -5, 9);
+		ETSIDI::printxy("ENHORABUENA, HAS GANADO.", -5,5);
+		ETSIDI::printxy("Pulsa -c- para continuar", -5, 4);
 		mundo.dibuja();
 	}
 	else if (estado==PAUSA)
 	{
 		ETSIDI::setTextColor(1,0,0);
 		ETSIDI::setFont("fuentes/Bitwise.ttf", 16);
-		ETSIDI::printxy("PAUSA, NO TARDES!", -5,10);
-		ETSIDI::printxy("Pulsa -c- para continuar", -5, 9);
+		ETSIDI::printxy("PAUSA, NO TARDES!", -5,5);
+		ETSIDI::printxy("Pulsa -c- para continuar", -5, 4);
 		mundo.dibuja();
 	}
 	else if (estado==NIVEL1)
 	{
-		ETSIDI::setTextColor(1,1,0);
+		ETSIDI::setTextColor(1,0,0);
 		ETSIDI::setFont("fuentes/Bitwise.ttf", 16);
-		ETSIDI::printxy("PRIMER NIVEL SUPERADO!", -5,10);
-		ETSIDI::printxy("Pulsa -c- para continuar", -5, 9);
+		ETSIDI::printxy("PRIMER NIVEL SUPERADO!", -5,5);
+		ETSIDI::printxy("Pulsa -c- para continuar", -5, 4);
 		mundo.dibuja();
 	}
 	else if (estado==NIVEL2)
 	{
-		ETSIDI::setTextColor(1,1,0);
+		ETSIDI::setTextColor(1,0,0);
 		ETSIDI::setFont("fuentes/Bitwise.ttf", 16);
-		ETSIDI::printxy("SEGUNDO NIVEL SUPERADO!", -5,10);
-		ETSIDI::printxy("Pulsa -c- para continuar", -5, 9);
+		ETSIDI::printxy("SEGUNDO NIVEL SUPERADO!", -5,5);
+		ETSIDI::printxy("Pulsa -c- para continuar", -5, 4);
 		mundo.dibuja();
 	}
 }
@@ -89,6 +107,7 @@ void Coordinador::tecla(unsigned char key)
 	{
 		if(key=='e')
 		{
+			mundo.bloques.destruirContenido();
 			mundo.inicializa();
 			estado=JUEGO;
 		}
@@ -164,11 +183,13 @@ void Coordinador::mueve()
 		}
 		if (mundo.bloques.lista[0]==00000000 && mundo.nivel==3)
 		{
+			ETSIDI::playMusica("musicas/victoria.mp3", false);
 			estado=FIN;
 			mundo.finDelJuego();
 		}
 		if (mundo.vds.getVidas()==0)
 		{
+			ETSIDI::playMusica("musicas/fail2.mp3", false);
 			estado=GAMEOVER;
 		}
 	}

@@ -1,5 +1,5 @@
 #pragma once
-#define MAX_BLOQUES 52
+#define MAX_BLOQUES 100
 #include "Bloque.h"
 #include "Esfera.h"
 class ListaBloques

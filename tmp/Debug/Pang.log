@@ -1,1 +1,50 @@
-﻿  Pang.vcxproj -> C:\Users\Leadclic03\Desktop\ETSIDI\Arkanoid Final\bin\Pang.exe
+﻿Compilación iniciada a las 12/06/2019 10:15:16.
+     1>Proyecto "C:\Users\F17MC\Desktop\ARKANOID-Entrega\Pang.vcxproj" en el nodo 2 (Rebuild destinos).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /Ilib /Isrc /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"tmp\Debug\\" /Fd"tmp\Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt src\Bloque.cpp src\BloqueDoble.cpp src\Bonus.cpp src\Caja.cpp src\ColorRGB.cpp src\Coordinador.cpp src\Esfera.cpp src\Ficha.cpp src\Interaccion.cpp src\ListaBloques.cpp src\Mundo.cpp src\ObjetoMovil.cpp src\ObjetoPlano.cpp src\Pang.cpp src\Pared.cpp src\Planobloque.cpp src\Puntos.cpp src\Vector2D.cpp src\vidas.cpp
+         vidas.cpp
+         Vector2D.cpp
+         Puntos.cpp
+         Planobloque.cpp
+         Pared.cpp
+         Pang.cpp
+         ObjetoPlano.cpp
+         ObjetoMovil.cpp
+         Mundo.cpp
+         ListaBloques.cpp
+         Interaccion.cpp
+         Ficha.cpp
+         Esfera.cpp
+         Coordinador.cpp
+         ColorRGB.cpp
+         Caja.cpp
+         Bonus.cpp
+         BloqueDoble.cpp
+         Bloque.cpp
+         Generando código...
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\F17MC\Desktop\ARKANOID-Entrega\bin\Pang.exe" /INCREMENTAL /NOLOGO /LIBPATH:lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\F17MC\Desktop\ARKANOID-Entrega\bin\Pang.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\F17MC\Desktop\ARKANOID-Entrega\bin\Pang.lib" /MACHINE:X86 tmp\Debug\Bloque.obj
+         tmp\Debug\BloqueDoble.obj
+         tmp\Debug\Bonus.obj
+         tmp\Debug\Caja.obj
+         tmp\Debug\ColorRGB.obj
+         tmp\Debug\Coordinador.obj
+         tmp\Debug\Esfera.obj
+         tmp\Debug\Ficha.obj
+         tmp\Debug\Interaccion.obj
+         tmp\Debug\ListaBloques.obj
+         tmp\Debug\Mundo.obj
+         tmp\Debug\ObjetoMovil.obj
+         tmp\Debug\ObjetoPlano.obj
+         tmp\Debug\Pang.obj
+         tmp\Debug\Pared.obj
+         tmp\Debug\Planobloque.obj
+         tmp\Debug\Puntos.obj
+         tmp\Debug\Vector2D.obj
+         tmp\Debug\vidas.obj
+         Pang.vcxproj -> C:\Users\F17MC\Desktop\ARKANOID-Entrega\bin\Pang.exe
+     1>Compilación del proyecto terminada "C:\Users\F17MC\Desktop\ARKANOID-Entrega\Pang.vcxproj" (Rebuild destinos).
+
+Compilación correcta.
+
+Tiempo transcurrido 00:00:13.02

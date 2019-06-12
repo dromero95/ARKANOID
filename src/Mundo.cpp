@@ -6,6 +6,7 @@
 #include "Planobloque.h"
 #include "Bloque.h"
 #include "BloqueDoble.h"
+#include "ETSIDI.h"
 
 void Mundo::rotarOjo() //No tocar
 {
@@ -41,36 +42,41 @@ void Mundo::mueve()
 	if (Interaccion::intercepta(bonus, ficha))
 	{
 		esfera.especial=true;
-		esfera.setColor(255,150,150);
+		esfera.setColor(255,0,0);
+	}
+
+	if(esfera.velocidad.x==0) //Cuando la bola está parada, se mueve encima de la ficha. 
+	{
+		esfera.posicion.x = ficha.posicion.x;
 	}
 
 	// AQUÍ ESTÁ LA LÓGICA DEL JUEGO
-	
-
 	if (Interaccion::rebote(esfera, caja.suelo)&&(vds.getVidas()>0)) //Si se nos cae la bola, y tenemos vidas aún...
 	{
 		vds.decrementaVidas(); //nos resta una vida
-		esfera.setPos(0,2); //esfera en posición inicial
+		vds.getVidasItoa();
+		esfera.setPos(ficha); //esfera en posición inicial
 		esfera.setVel(0,0);  //esfera parada esperando a ser lanzada
 		esfera.aceleracion.y=0; //esfera parada esperando ser lanzada
 		esfera.especial=false;
-		esfera.setColor(40,40,40);
-	}
+		esfera.setColor(250,250,250);
+	}	
 
-	
-	
 	Bloque *aux=bloques.rebota(esfera);//Si la esfera choca con un bloque, nos devuelve el bloque con el que choca
 	if(aux!=0x000000)//si alguna esfera ha chocado ¿Es necesario?
 	{	
-		if(!(contador%10))
+		ETSIDI::play("sonidos/impacto.wav");
+		punto.getPuntosItoa();
+		punto.incrementaPuntos();
+		punto.imprimePuntos();
+		if((!(contador%10)) && esfera.especial==false)
 		{
 			bonus.dibuja();
 			bonus.setPos(aux->suelo);
 			bonus.setVel(0);
-			
+			bonus.setLado(0.7);
 		}
 		contador++;
-
 		bloques.eliminar(aux);//eliminamos el bloque que hemos tocado //AQUÍ ES DONDE SE GESTIONA EL BORRADO DEL BLOQUE QUE CHOCA
 	}
 }
@@ -80,26 +86,19 @@ void Mundo::inicializa()
 	x_ojo=0; //Posiciones del ojo a donde miramos
 	y_ojo=7.5;
 	z_ojo=30;
-	
 	nivel=1;
-	
 	contador=1;
-	
-	esfera.setColor(40,40,40); //Establecemos la esfera de color rojo
+	punto.Puntuacion=0;
+	esfera.setColor(250,250,250); //Establecemos la esfera de color rojo
 	esfera.setRadio(0.5f); //Con este radio
-	esfera.setPos(0,1.5f); //En esta posición inicial
+	esfera.aceleracion.y=0;
 	esfera.setVel(0,0); // Parada, esperando a ser lanzada
-
 	esfera.especial=false; //Por defecto, la esfera no es "Especial". Lo será al coger un bonus.
-
 	ficha.setPos(2.0f,1,-2.0f,1); //Fijamos la posición de la ficha en el centro de la pantalla.
-
+	esfera.setPos(ficha); //En esta posición inicial
 	vds.setVidas(5); //Ponemos el número de vidas iniciales. 
-
 	//Cargamos la primera pantalla del juego
 	inicializaV1();
-
-
 }
 
 void Mundo::creaBloque(int h, int v)
@@ -107,15 +106,14 @@ void Mundo::creaBloque(int h, int v)
 	int horizontal=h;
 	int vertical=v;
 	Bloque* aux = new Bloque; // Creamos un bloque con NEW, y se lo asignamos a AUX. Utilizamos AUX para ahora darle posición y color a sus planos. 
-	//aux->frontal.setColor(150,150,150);
 	aux->frontal.setPos(-13.0f+horizontal,14.0f-vertical,-11.0f+horizontal,15.0f-vertical);
-	//aux->suelo.setColor(150,150,150);
+	aux->suelo.setColor(70,70,70);
 	aux->suelo.setPos(-13.0f+horizontal,14-vertical,-11.0f+horizontal,14-vertical);
-	//aux->techo.setColor(255,0,0);
+	aux->techo.setColor(70,70,70);
 	aux->techo.setPos(-13.0f+horizontal,15.0f-vertical,-11.0f+horizontal,15.0f-vertical);
-	//aux->pared_dcha.setColor(150,150,150);
+	aux->pared_dcha.setColor(70,70,70);
 	aux->pared_dcha.setPos(-13.0f+horizontal,14-vertical,-13.0f+horizontal,15.0f-vertical);
-	//aux->pared_izq.setColor(150,150,150);
+	aux->pared_izq.setColor(70,70,70);
 	aux->pared_izq.setPos(-11.0f+horizontal,14-vertical,-11.0f+horizontal,15.0f-vertical);
 	bloques.agregar(aux); //Agregamos el bloque a la lista 
 }
@@ -124,18 +122,29 @@ void Mundo::creaBloqueEspecial(int h, int v)
 {
 	int horizontal=h;
 	int vertical=v;
-	Bloque* aux = new BloqueDoble; // Creamos un bloque con NEW, y se lo asignamos a AUX. Utilizamos AUX para ahora darle posición y color a sus planos. 
-	//aux->frontal.setColor(150,150,150);
+	Bloque* aux2 = new BloqueDoble; // Creamos un bloque con NEW, y se lo asignamos a AUX. Utilizamos AUX para ahora darle posición y color a sus planos. 
+	aux2->frontal.setPos(-13.0f+horizontal,14.0f-vertical,-11.0f+horizontal,15.0f-vertical);
+	aux2->suelo.setColor(155,155,0);
+	aux2->suelo.setPos(-13.0f+horizontal,14.0f-vertical,-11.0f+horizontal,14.0f-vertical);
+	aux2->techo.setColor(155,155,0);
+	aux2->techo.setPos(-13.0f+horizontal,15.0f-vertical,-11.0f+horizontal,15.0f-vertical);
+	aux2->pared_dcha.setColor(155,155,0);
+	aux2->pared_dcha.setPos(-13.0f+horizontal,14.0f-vertical,-13.0f+horizontal,15.0f-vertical);
+	aux2->pared_izq.setColor(155,155,0);
+	aux2->pared_izq.setPos(-11.0f+horizontal,14.0f-vertical,-11.0f+horizontal,15.0f-vertical);
+	bloques.agregar(aux2); //Agregamos el bloque a la lista 
+	Bloque* aux = new Bloque; // Creamos un bloque con NEW, y se lo asignamos a AUX. Utilizamos AUX para ahora darle posición y color a sus planos. 
 	aux->frontal.setPos(-13.0f+horizontal,14.0f-vertical,-11.0f+horizontal,15.0f-vertical);
-	//aux->suelo.setColor(150,150,150);
+	aux->suelo.setColor(70,70,70);
 	aux->suelo.setPos(-13.0f+horizontal,14-vertical,-11.0f+horizontal,14-vertical);
-	//aux->techo.setColor(255,0,0);
+	aux->techo.setColor(70,70,70);
 	aux->techo.setPos(-13.0f+horizontal,15.0f-vertical,-11.0f+horizontal,15.0f-vertical);
-	//aux->pared_dcha.setColor(150,150,150);
+	aux->pared_dcha.setColor(70,70,70);
 	aux->pared_dcha.setPos(-13.0f+horizontal,14-vertical,-13.0f+horizontal,15.0f-vertical);
-	//aux->pared_izq.setColor(150,150,150);
+	aux->pared_izq.setColor(70,70,70);
 	aux->pared_izq.setPos(-11.0f+horizontal,14-vertical,-11.0f+horizontal,15.0f-vertical);
 	bloques.agregar(aux); //Agregamos el bloque a la lista 
+
 }
 
 void Mundo::inicializaV1()
@@ -172,10 +181,10 @@ void Mundo::inicializaV1()
 void Mundo::inicializaV2()
 {
 	nivel=2;
-	esfera.especial=true;
-	esfera.setColor(40,40,40);
+	esfera.especial=false;
+	esfera.setColor(250,250,250);
 	cout<<"Primer nivel superado. Siguiente nivel: Nivel 2."<<endl;
-	esfera.setPos(0,2); //esfera en posición inicial
+	esfera.setPos(ficha); //esfera en posición inicial
 	esfera.setVel(0,0);  //esfera parada esperando a ser lanzada
 	esfera.aceleracion.y=0; //esfera parada esperando ser lanzada
 	ficha.setPos(2.0f,1,-2.0f,1);
@@ -212,10 +221,10 @@ void Mundo::inicializaV2()
 void Mundo::inicializaV3()
 {
 	nivel=3;
-	esfera.especial=true;
-	esfera.setColor(40,40,40);
+	esfera.especial=false;
+	esfera.setColor(250,250,250);
 	cout<<"Segundo nivel superado. Siguiente nivel: Nivel 3."<<endl;
-	esfera.setPos(0,2); //esfera en posición inicial
+	esfera.setPos(ficha); //esfera en posición inicial
 	esfera.setVel(0,0);  //esfera parada esperando a ser lanzada
 	esfera.aceleracion.y=0; //esfera parada esperando ser lanzada
 	ficha.setPos(2.0f,1,-2.0f,1);
@@ -256,7 +265,7 @@ void Mundo::finDelJuego()
 	cout<<"Fin del juego"<<endl;
 	ficha.setVel (0,0); //Fin del juego, la ficha queda inmovi
 	esfera.setVel (0,0);
-	esfera.setPos (0,2);
+	esfera.setPos (ficha);
 	ficha.setPos (2.0f,1,-2.0f,1);
 	esfera.aceleracion.y=0;
 	nivel=0;
@@ -274,7 +283,7 @@ void Mundo::teclaEspecial(unsigned char key)
 	{
 		ficha.setVel (0,0); //Fin del juego, la ficha queda inmovi
 		esfera.setVel (0,0);
-		esfera.setPos (0,2);
+		esfera.setPos (ficha);
 		ficha.setPos (2.0f,1,-2.0f,1);
 		//cout<<"Memoria final"<<endl;
 		//	for(int i = 0; i<52; i++)

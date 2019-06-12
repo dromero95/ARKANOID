@@ -94,6 +94,7 @@
     <ClCompile Include="src\ListaBloques.cpp" />
     <ClCompile Include="src\Mundo.cpp" />
     <ClCompile Include="src\ObjetoMovil.cpp" />
+    <ClCompile Include="src\ObjetoPlano.cpp" />
     <ClCompile Include="src\Pang.cpp" />
     <ClCompile Include="src\Pared.cpp" />
     <ClCompile Include="src\Planobloque.cpp" />
@@ -114,6 +115,7 @@
     <ClInclude Include="src\ListaBloques.h" />
     <ClInclude Include="src\Mundo.h" />
     <ClInclude Include="src\ObjetoMovil.h" />
+    <ClInclude Include="src\ObjetoPlano.h" />
     <ClInclude Include="src\Pared.h" />
     <ClInclude Include="src\Planobloque.h" />
     <ClInclude Include="src\Puntos.h" />

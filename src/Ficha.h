@@ -4,6 +4,7 @@
 class Ficha : public ObjetoMovil
 {
 	friend class Interaccion;
+	friend class Esfera;
 public:
 	void dibuja();
 	Ficha();
